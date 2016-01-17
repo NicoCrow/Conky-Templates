@@ -1,0 +1,164 @@
+#	made by Nicholas Crow
+#	dreamer.lviv@gmail.com
+
+# set to yes if you want Conky to be forked in the background
+background yes
+
+# Use Xft?
+use_xft yes
+
+# Xft font when Xft is enabled
+#xftfont sans:size=8
+xftfont Clean:size=8
+
+# Text alpha when using Xft
+xftalpha 0.1
+
+# Update interval in seconds
+update_interval 0.5
+
+# This is the number of times Conky will update before quitting.
+# Set to zero to run forever.
+total_run_times 0
+
+# Create own window instead of using desktop (required in nautilus)
+own_window yes
+
+# If own_window is yes, you may use type normal, desktop or override
+#dock
+own_window_type normal
+
+# Use pseudo transparency with own_window?
+own_window_transparent yes
+
+# If own_window_transparent is set to no, you can set the background colour here
+#own_window_colour black
+
+# If own_window is yes, these window manager hints may be used
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+own_window_argb_visual yes
+own_window_argb_value 0
+
+# Use double buffering (reduces flicker, may not work for everyone)
+double_buffer yes
+
+# Minimum size of text area
+minimum_size 200 735
+
+#Maximum width
+maximum_width 200
+
+# Draw shades?
+draw_shades no
+
+# Draw outlines?
+draw_outline no
+
+# Draw borders around graphs
+draw_graph_borders no
+
+# Draw borders around text
+draw_borders no
+
+# Stippled borders?
+#stippled_borders 8
+
+# border margins
+#border_margin 1
+
+# border width
+#border_width 1
+
+
+# Text alignment, other possible values are commented
+#alignment top_left
+alignment top_right
+#alignment bottom_left
+#alignment bottom_right
+#alignment none
+#alignment top_middle
+
+# Gap between borders of screen and text
+# same thing as passing -x at command line
+gap_x 0
+gap_y 0
+
+# Subtract file system buffers from used memory?
+no_buffers yes
+
+# set to yes if you want all text to be in uppercase
+uppercase no
+
+# Force UTF8? note that UTF8 support required XFT
+override_utf8_locale yes
+
+# Add spaces to keep things from moving about? This only affects certain objects.
+use_spacer yes
+
+default_color aecc13
+default_shade_color 000000
+default_outline_color 222222
+
+cpu_avg_samples 2
+net_avg_samples 2
+
+own_window_argb_value 0
+own_window_argb_visual yes
+own_window_colour 000000
+TEXT
+${voffset 3}	${font Ubuntu:pixelsize=16}System $stippled_hr 
+#${voffset 10}	${font Ubuntu:pixelsize=13}$sysname  $kernel  on $machine
+#Up Time
+${voffset 3}	${font Ubuntu:pixelsize=13}Uptime: $uptime
+#$CPU
+${voffset 8}	${font Ubuntu:pixelsize=13}CPU:  $cpu% $alignr  Temp: ${acpitemp} °C
+	 ${cpubar 3}
+	${cpugraph 15}
+#Ram
+${voffset 3}	${font Ubuntu:pixelsize=13}Ram: $alignr $mem / $memmax
+	${membar 3}
+#Swap
+${voffset 3}	${font Ubuntu:pixelsize=13}Swap: $alignr $swap / $swapmax
+	${swapbar 3}
+#Battery
+${voffset 3}	${font Ubuntu:pixelsize=13}Battery: $alignr  $battery
+	${battery_bar 3}
+#Power
+${voffset 3}	${font Ubuntu:pixelsize=13}Power: $alignr  $acpiacadapter
+#Free Disks Spase
+${voffset 15}	${font Ubuntu:pixelsize=16}File System $stippled_hr ${font}
+#Root:
+${voffset 8}	${font Ubuntu:pixelsize=13}Linux: $alignr ${fs_free /} / ${fs_size /}
+	${fs_bar 3 /}
+#Win C:
+${voffset 3}	${font Ubuntu:pixelsize=13}Disc C: $alignr ${fs_free /home/Se7en/C} / ${fs_size /home/Se7en/C}
+	${fs_bar 3 /home/Se7en/C}
+#Win D:
+${voffset 3}	${font Ubuntu:pixelsize=13}Disc D: $alignr ${fs_free /home/Se7en/D} / ${fs_size /home/Se7en/D}
+	${fs_bar 3 /home/Se7en/D}
+#
+#http://unix.stackexchange.com/questions/157427/grep-the-available-space-from-df-output
+#
+${voffset 3}	${font Ubuntu:pixelsize=13}USB: $alignr${exec df -h | grep "/dev/sdb" | awk '{ printf "%s / %s", $4, $2 }' }
+#
+${voffset 15}	${font Ubuntu:pixelsize=16}Network $stippled_hr ${font}
+#Wi-Fi
+${voffset 8}	${font Ubuntu:pixelsize=13}Wifi $alignr${wireless_link_qual_perc wlan0}%
+#Net Speed
+${voffset 3}	${font Ubuntu:pixelsize=13}${downspeedgraph wlan0 15,100} $alignr${upspeedgraph wlan0 15,100}
+${voffset 8}	${font Ubuntu:pixelsize=13}Down: ${downspeed wlan0}/s $alignr Up: ${upspeed wlan0}/s
+#Net Trafic
+${voffset 3}	${font Ubuntu:pixelsize=13}Downloaded: $alignr ${totaldown wlan0}
+${voffset 3}	${font Ubuntu:pixelsize=13}Uploaded: $alignr ${totalup wlan0}
+#IP
+${voffset 8}	${font Ubuntu:pixelsize=13}Local IP: $alignr ${addr wlan0}
+${voffset 3}	${font Ubuntu:pixelsize=13}Public IP: $alignr ${execi 3600 wget -q -O - checkip.dyndns.org | sed -e 's/[^[:digit:]\|.]//g'}
+#Time
+${voffset 15}	${font Ubuntu:pixelsize=16}Time $stippled_hr ${font}
+${voffset 3}	${font Ubuntu:pixelsize=28}${alignc}${time %H:%M:%S}
+${voffset 1}	${font Ubuntu:pixelsize=22}${alignc}${time %A}
+${voffset 3}	${font Ubuntu:pixelsize=22}${alignc}${time %d %b %Y}
+#Every Hover Beep
+	${if_match ${time %M%S} == 0000}
+		${exec aplay beep.wav}
+		${endif}
