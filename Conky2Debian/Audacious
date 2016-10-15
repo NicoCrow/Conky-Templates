@@ -1,5 +1,7 @@
-#	made by Nicholas Crow
-#	dreamer.lviv@gmail.com
+# .conkyrc
+
+#   made by Nicholas Crow
+#   dreamer.lviv@gmail.com
 
 # set to yes if you want Conky to be forked in the background
 background yes
@@ -8,18 +10,21 @@ background yes
 use_xft yes
 
 # Xft font when Xft is enabled
-#xftfont sans:size=8
-xftfont Clean:size=8
+xftfont Ubuntu:pixelsize=13
+text_buffer_size 2048
 
 # Text alpha when using Xft
-xftalpha 0.1
+xftalpha 0.8
 
 # Update interval in seconds
 update_interval 0.25
 
 # This is the number of times Conky will update before quitting.
 # Set to zero to run forever.
-total_run_times 0
+#total_run_times 0
+
+# Use double buffering (reduces flicker, may not work for everyone)
+double_buffer yes
 
 # Create own window instead of using desktop (required in nautilus)
 own_window yes
@@ -39,9 +44,6 @@ own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
 own_window_argb_visual yes
 own_window_argb_value 0
 
-# Use double buffering (reduces flicker, may not work for everyone)
-double_buffer yes
-
 # Minimum size of text area
 minimum_size 350 150
 
@@ -49,7 +51,6 @@ minimum_size 350 150
 maximum_width 350
 
 # Draw shades?
-# draw_shades no
 draw_shades no
 
 # Draw outlines?
@@ -62,25 +63,21 @@ draw_graph_borders no
 draw_borders no
 
 # Stippled borders?
-# stippled_borders 8
+#stippled_borders 8
 
 # border margins
 #border_margin 1
 
 # border width
-# border_width 1
+#border_width 1
 
 # Text alignment, other possible values are commented
-#alignment top_left
-#alignment top_right
-#alignment bottom_left
+#alignment ( top_left | top_right | bottom_left | bottom_right | none | top_middle )
 alignment bottom_right
-#alignment none
-#alignment top_middle
 
 # Gap between borders of screen and text
 # same thing as passing -x at command line
-gap_x 230
+gap_x 250
 gap_y 0
 
 # Subtract file system buffers from used memory?
@@ -95,9 +92,9 @@ override_utf8_locale yes
 # Add spaces to keep things from moving about? This only affects certain objects.
 use_spacer yes
 
-default_color aecc13
-default_shade_color 000000
-default_outline_color 222222
+default_color ff6000
+#default_shade_color 000000
+#default_outline_color 222222
 
 cpu_avg_samples 2
 net_avg_samples 2
@@ -109,7 +106,7 @@ own_window_colour 000000
 TEXT
 ${if_running audacious}
 #Audacious Version
-${alignc}${font Ubuntu:pixelsize=13}${exec audtool --version}${font}
+${alignc}${exec audtool --version}${font}
 #Song Artist, Title & Time
 ${voffset 30}${offset 5}${exec audtool --current-song-tuple-data artist} - ${exec audtool --current-song-tuple-data title} $alignr ${exec audtool --current-song-output-length} / ${exec audtool --current-song-length}
 ${offset 5}$audacious_bar
