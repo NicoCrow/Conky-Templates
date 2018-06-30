@@ -51,33 +51,33 @@ conky.config = {
 
 conky.text = [[
 ${voffset 5}${font Ubuntu:pixelsize=16}System $stippled_hr
-${voffset 5}${font Ubuntu:pixelsize=13}Uptime: $color$uptime
-#${voffset 5}Frequency: $alignr$color $freq_g GHz
-${voffset 10}CPU: $color $cpu% $alignr Temp: ${acpitemp} °C
+${voffset 5}${font Ubuntu:pixelsize=13}Uptime: $uptime
+#${voffset 5}Frequency: $alignr $freq_g GHz
+${voffset 10}CPU: $cpu% $alignr Temp: ${acpitemp} °C
 ${cpubar 3}
 ${cpugraph 15}
-Ram: $alignr$color $mem / $memmax
+${voffset 5}Ram: $alignr $mem / $memmax
 #($memperc%)
 ${membar 3}
-Swap: $alignr$color $swap / $swapmax
+${voffset 5}Swap: $alignr $swap / $swapmax
 ${swapbar 3}
-Battery: $alignr $color $battery
+${voffset 5}Battery: $alignr $battery
 ${battery_bar 3}
 ${voffset 15}${font Ubuntu:pixelsize=16}File System $stippled_hr
-#${voffset 5}${font Ubuntu:pixelsize=13}Linux: $alignr $color${fs_free /} / ${fs_size /}
-${voffset 5}${font Ubuntu:pixelsize=13}Linux: $alignr $color${fs_used /} / ${fs_size /}
+#${voffset 5}${font Ubuntu:pixelsize=13}Linux: $alignr ${fs_free /} / ${fs_size /}
+${voffset 5}${font Ubuntu:pixelsize=13}Linux: $alignr ${fs_used /} / ${fs_size /}
 ${fs_bar 3 /}
-#Home: $alignr $color${fs_free /home} / ${fs_size /home}
-Home: $alignr $color${fs_used /home} / ${fs_size /home}
+#Home: $alignr ${fs_free /home} / ${fs_size /home}
+${voffset 5}Home: $alignr ${fs_used /home} / ${fs_size /home}
 ${fs_bar 3 /home}
 ${voffset 15}${font Ubuntu:pixelsize=16}Network $stippled_hr
-${voffset 10}${font Ubuntu:pixelsize=13}Wifi $alignr$color${wireless_link_qual_perc wlp4s0}%
-${voffset 5}${downspeedgraph wlp4s0 15,100} $alignr$color${upspeedgraph wlp4s0 15,100}
-${voffset 10}Down: $color${downspeed wlp4s0}/s$color $alignr Up: $color${upspeed wlp4s0}/s
-${voffset 5}Downloaded: $alignr$color ${totaldown wlp4s0}
-${voffset 5}Uploaded: $alignr$color ${totalup wlp4s0}
-${voffset 10}Local IP: $alignr$color ${addr wlp4s0}
-${voffset 5}Public IP: $alignr$color ${execi 3600 wget -q -O - checkip.dyndns.org | sed -e 's/[^[:digit:]\|.]//g'}
+${voffset 10}${font Ubuntu:pixelsize=13}Wifi $alignr${wireless_link_qual_perc wlp4s0}%
+${voffset 5}${downspeedgraph wlp4s0 15,100} $alignr${upspeedgraph wlp4s0 15,100}
+${voffset 10}Down: ${downspeed wlp4s0}/s $alignr Up: ${upspeed wlp4s0}/s
+${voffset 5}Downloaded: $alignr ${totaldown wlp4s0}
+${voffset 5}Uploaded: $alignr ${totalup wlp4s0}
+${voffset 10}Local IP: $alignr ${addr wlp4s0}
+${voffset 5}Public IP: $alignr ${execi 3600 wget -q -O - checkip.dyndns.org | sed -e 's/[^[:digit:]\|.]//g'}
 ${voffset 15}${font Ubuntu:pixelsize=16}Time $stippled_hr ${font}
 ${voffset 5}${font Ubuntu:pixelsize=28}${alignc}${time %H:%M:%S}
 ${voffset 1}${font Ubuntu:pixelsize=22}${alignc}${time %A}
