@@ -1,0 +1,88 @@
+conky.config = {
+    background = true,
+    use_xft = true,
+    font = "Ubuntu Mono Regular:pixelsize=13",
+    xftalpha = 0.1,
+    update_interval = 1.0,
+    total_run_times = 0,
+
+    own_window = true,
+    own_window_class = "Conky",
+    own_window_type = "desktop",
+    own_window_transparent = true,
+
+    own_window_hints = "undecorated,below,sticky,skip_taskbar,skip_pager",
+    own_window_argb_visual = true,
+    own_window_argb_value = 0,
+    own_window_colour = "#000",
+
+    double_buffer = true,
+    maximum_width = 200,
+
+    draw_shades = false,
+    draw_outline = false,
+    draw_graph_borders = false,
+    draw_borders = false,
+    alignment = "top_right",
+
+    gap_x = 10,
+    gap_y = 15,
+
+    no_buffers = true,
+    uppercase = false,
+
+    override_utf8_locale = true,
+    default_color = "#95b805",
+    default_shade_color = "#000",
+    default_outline_color = "#222",
+    cpu_avg_samples = 2,
+    net_avg_samples = 2,
+
+    use_spacer = "none",
+    minimum_height = 5,
+    minimum_width = 200,
+    out_to_console = false,
+    out_to_stderr = false,
+    extra_newline = false,
+    stippled_borders = 0,
+    show_graph_scale = false,
+    show_graph_range = false
+}
+
+conky.text = [[
+${voffset 5}${font Ubuntu:pixelsize=16}System $stippled_hr
+${voffset 5}${font Ubuntu:pixelsize=13}Uptime: $color$uptime
+#${voffset 5}Frequency: $alignr$color $freq_g GHz
+${voffset 10}CPU: $color $cpu% $alignr Temp: ${acpitemp} °C
+${cpubar 3}
+${cpugraph 15}
+Ram: $alignr$color $mem / $memmax
+#($memperc%)
+${membar 3}
+Swap: $alignr$color $swap / $swapmax
+${swapbar 3}
+Battery: $alignr $color $battery
+${battery_bar 3}
+${voffset 15}${font Ubuntu:pixelsize=16}File System $stippled_hr
+#${voffset 5}${font Ubuntu:pixelsize=13}Linux: $alignr $color${fs_free /} / ${fs_size /}
+${voffset 5}${font Ubuntu:pixelsize=13}Linux: $alignr $color${fs_used /} / ${fs_size /}
+${fs_bar 3 /}
+#Home: $alignr $color${fs_free /home} / ${fs_size /home}
+Home: $alignr $color${fs_used /home} / ${fs_size /home}
+${fs_bar 3 /home}
+${voffset 15}${font Ubuntu:pixelsize=16}Network $stippled_hr
+${voffset 10}${font Ubuntu:pixelsize=13}Wifi $alignr$color${wireless_link_qual_perc wlp4s0}%
+${voffset 5}${downspeedgraph wlp4s0 15,100} $alignr$color${upspeedgraph wlp4s0 15,100}
+${voffset 10}Down: $color${downspeed wlp4s0}/s$color $alignr Up: $color${upspeed wlp4s0}/s
+${voffset 5}Downloaded: $alignr$color ${totaldown wlp4s0}
+${voffset 5}Uploaded: $alignr$color ${totalup wlp4s0}
+${voffset 10}Local IP: $alignr$color ${addr wlp4s0}
+${voffset 5}Public IP: $alignr$color ${execi 3600 wget -q -O - checkip.dyndns.org | sed -e 's/[^[:digit:]\|.]//g'}
+${voffset 15}${font Ubuntu:pixelsize=16}Time $stippled_hr ${font}
+${voffset 5}${font Ubuntu:pixelsize=28}${alignc}${time %H:%M:%S}
+${voffset 1}${font Ubuntu:pixelsize=22}${alignc}${time %A}
+${voffset 5}${alignc}${time %d %b %Y}
+${if_match ${time %M%S} == 0000}
+    ${exec aplay beep.wav}
+${endif}
+]]
